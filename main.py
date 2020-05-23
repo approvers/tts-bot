@@ -11,7 +11,7 @@ import discord
 from gtts import gTTS
 from mutagen.mp3 import MP3
 
-vc_id = 711903665740578857
+vc_id = 683939861539192865
 sound_dict = {"dai-pan": "snd/single_bullet.mp3", "bullet": "snd/multi_bullet.mp3"}
 
 client = discord.Client()

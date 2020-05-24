@@ -28,7 +28,7 @@ async def on_message(message):
         language = "ja"
 
         voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
-        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp.mp3"))
+        voice_client.play(discord.FFmpegPCMAudio(source="snd/pppp.mp3"))
 
         ut = time.time()
         output = gTTS(text=my_text, lang=language, slow=False)
@@ -42,7 +42,7 @@ async def on_message(message):
         await asyncio.sleep(sleep_time)
         voice_client.stop()
 
-        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp_end.mp3"))
+        voice_client.play(discord.FFmpegPCMAudio(source="snd/pppp_end.mp3"))
         await asyncio.sleep(5)
 
         await voice_client.disconnect(force=True)
@@ -53,7 +53,7 @@ async def on_message(message):
         language = "en"
 
         voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
-        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp.mp3"))
+        voice_client.play(discord.FFmpegPCMAudio(source="snd/pppp.mp3"))
 
         ut = time.time()
         output = gTTS(text=my_text, lang=language, slow=False)
@@ -67,7 +67,7 @@ async def on_message(message):
         await asyncio.sleep(sleep_time)
         voice_client.stop()
 
-        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp_end.mp3"))
+        voice_client.play(discord.FFmpegPCMAudio(source="snd/pppp_end.mp3"))
         await asyncio.sleep(5)
 
         await voice_client.disconnect(force=True)

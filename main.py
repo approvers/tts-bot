@@ -12,7 +12,7 @@ from gtts import gTTS
 from mutagen.mp3 import MP3
 
 vc_id = 683939861539192865
-sound_dict = {"dai-pan": "snd/single_bullet.mp3", "bullet": "snd/multi_bullet.mp3"}
+sound_dict = {"dai-pan": "snd/single_bullet.mp3", "bullet": "snd/multi_bullet.mp3", "scream": "snd/screaming-beaber.mp3"}
 
 client = discord.Client()
 
@@ -116,6 +116,13 @@ async def on_message(message):
         voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
         voice_client.play(discord.FFmpegPCMAudio(source=sound_dict["bullet"]))
         sleep_time = MP3(sound_dict["bullet"]).info.length + 0.25
+        await asyncio.sleep(sleep_time)
+        await voice_client.disconnect(force=True)
+
+    if message.content.startswith("!scream"):
+        voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
+        voice_client.play(discord.FFmpegPCMAudio(source=sound_dict["scream"]))
+        sleep_time = MP3(sound_dict["scream"]).info.length + 0.25
         await asyncio.sleep(sleep_time)
         await voice_client.disconnect(force=True)
 

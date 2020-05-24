@@ -5,7 +5,7 @@ https://discordpy.readthedocs.io/ja/latest/api.html
 """
 import asyncio
 import os
-import sys
+import time
 
 import discord
 from gtts import gTTS
@@ -22,6 +22,56 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if message.content.startswith("!announce") and not message.content.startswith("!announcee"):
+        my_text = message.content.strip("!announce ")
+
+        language = "ja"
+
+        voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
+        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp.mp3"))
+
+        ut = time.time()
+        output = gTTS(text=my_text, lang=language, slow=False)
+        output.save("tmp/output.mp3")
+        await asyncio.sleep(0 if (5 - (time.time() - ut)) < 0 else (5 - (time.time() - ut)))
+        voice_client.stop()
+
+        voice_client.play(discord.FFmpegPCMAudio(source="tmp/output.mp3"))
+        sleep_time = MP3("tmp/output.mp3").info.length + 0.25
+
+        await asyncio.sleep(sleep_time)
+        voice_client.stop()
+
+        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp_end.mp3"))
+        await asyncio.sleep(5)
+
+        await voice_client.disconnect(force=True)
+
+    if message.content.startswith("!announcee"):
+        my_text = message.content.strip("!announcee ")
+
+        language = "en"
+
+        voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
+        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp.mp3"))
+
+        ut = time.time()
+        output = gTTS(text=my_text, lang=language, slow=False)
+        output.save("tmp/output.mp3")
+        await asyncio.sleep(0 if (5 - (time.time() - ut)) < 0 else (5 - (time.time() - ut)))
+        voice_client.stop()
+
+        voice_client.play(discord.FFmpegPCMAudio(source="tmp/output.mp3"))
+        sleep_time = MP3("tmp/output.mp3").info.length + 0.25
+
+        await asyncio.sleep(sleep_time)
+        voice_client.stop()
+
+        voice_client.play(discord.FFmpegPCMAudio(source="tmp/pppp_end.mp3"))
+        await asyncio.sleep(5)
+
+        await voice_client.disconnect(force=True)
+
     if message.content.startswith("!gtts") and not message.content.startswith("!gttse"):
         my_text = message.content.strip("!gtts ")
 

@@ -15,7 +15,9 @@ vc_id = 683939861539192865
 sound_dict = {"dai-pan": "snd/single_bullet.mp3",
               "bullet": "snd/multi_bullet.mp3",
               "scream": "snd/screaming-beaber.mp3",
-              "urusai": "snd/shut-up.mp3"}
+              "urusai": "snd/shut-up.mp3",
+              "AC": "snd/AC_Buzzer.mp3",
+              "WA": "snd/WA_Buzzzer.mp3"}
 
 client = discord.Client()
 
@@ -133,6 +135,20 @@ async def on_message(message):
         voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
         voice_client.play(discord.FFmpegPCMAudio(source=sound_dict["urusai"]))
         sleep_time = MP3(sound_dict["urusai"]).info.length - 0.25
+        await asyncio.sleep(sleep_time)
+        await voice_client.disconnect(force=True)
+
+    if message.content.startswith("!ac") or message.content.startswith("!right"):
+        voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
+        voice_client.play(discord.FFmpegPCMAudio(source=sound_dict["AC"]))
+        sleep_time = MP3(sound_dict["AC"]).info.length - 0.25
+        await asyncio.sleep(sleep_time)
+        await voice_client.disconnect(force=True)
+
+    if message.content.startswith("!wa") or message.content.startswith("!wrong"):
+        voice_client = await (client.get_channel(vc_id)).connect(reconnect=False)
+        voice_client.play(discord.FFmpegPCMAudio(source=sound_dict["WA"]))
+        sleep_time = MP3(sound_dict["WA"]).info.length - 0.25
         await asyncio.sleep(sleep_time)
         await voice_client.disconnect(force=True)
 

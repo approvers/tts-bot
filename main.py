@@ -22,6 +22,9 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if r"https://www.dlsite.com/maniax/work/=/product_id/RJ224037.html/" in message.content:
+        await message.delete(delay=None)
+
     if message.content.startswith("!announce") and not message.content.startswith("!announcee"):
         my_text = message.content.strip("!announce ")
 

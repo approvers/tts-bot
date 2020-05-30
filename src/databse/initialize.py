@@ -1,9 +1,12 @@
 import os
 import datetime
+import pytz
 
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import db
+
+JST = pytz.timezone("Asia/Tokyo")
 
 
 def initialize_db():
@@ -28,7 +31,7 @@ def initialize_db():
 
     haracho_ref = member_table.child(str(713813234246746202)).child("voice_history")
 
-    now = datetime.datetime.now()
+    now = datetime.datetime.now(JST)
 
     haracho_ref.child(str(now.timestamp()).replace(".", "d")).set({
         "time_stamp": str(now),
@@ -36,7 +39,7 @@ def initialize_db():
         "is_join": True
     })
 
-    now = datetime.datetime.now() + datetime.timedelta(seconds=1)
+    now = datetime.datetime.now(JST) + datetime.timedelta(seconds=1)
 
     haracho_ref.child(str(now.timestamp()).replace(".", "d")).set({
         "time_stamp": str(now),

@@ -126,5 +126,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-#JetBrains IDE
+# JetBrains IDE
 .idea/
+
+# Firebase credential
+*firebase*.json
+*credential*.json
+*uid.ini

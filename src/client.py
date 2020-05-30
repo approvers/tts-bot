@@ -28,10 +28,12 @@ class MainClient(discord.Client):
             "!scream",
             "!ac",
             "!wa",
-            "!gtts"
-            "!announce"
+            "!gtts",
+            "!gttse",
+            "!announce",
+            "!announcee"
         ]
-        if message.content.strip(" ") in commands:
+        if message.content in commands:
             await message.channel.send(("<@!{}>、firebase対応に従って大規模リファクタ中です！" +
                                         "\nすぐにまた使えるようになるので待っててね" +
                                         "\nただし`!urusai`は回復ポイントなので残っています").format(message.author.id))

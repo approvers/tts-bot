@@ -7,6 +7,8 @@ from firebase_admin import db
 
 
 def initialize_db():
+    print(os.getenv("FIREBASE"))
+
     cred_text = os.getenv("FIREBASE")
     if cred_text is not None:
         with open("fb_credential.json") as f:

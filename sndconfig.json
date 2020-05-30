@@ -1,0 +1,10 @@
+{
+  "urusai": "ast/snd/shut-up.mp3",
+  "ac": "ast/snd/AC_Buzzer.mp3",
+  "wa": "ast/snd/WA_Buzzzer.mp3",
+  "bullet": "ast/snd/multi_bullet.mp3",
+  "scream": "ast/snd/screaming-beaber.mp3",
+  "dai-pan": "ast/snd/single_bullet.mp3",
+  "announce-start": "ast/snd/pppp.mp3",
+  "announce-end": "ast/snd/pppp_end.mp3"
+}

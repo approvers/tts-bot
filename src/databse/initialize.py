@@ -11,7 +11,7 @@ def initialize_db():
 
     cred_text = os.getenv("FIREBASE")
     if cred_text is not None:
-        with open("fb_credential.json") as f:
+        with open("fb_credential.json", mode="w") as f:
             f.write(cred_text)
 
     uid_text = os.getenv("FIREBASE_CLIENT_ID")

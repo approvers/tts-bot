@@ -7,8 +7,6 @@ from firebase_admin import db
 
 
 def initialize_db():
-    print(os.getenv("FIREBASE"))
-
     cred_text = os.getenv("FIREBASE")
     if cred_text is not None:
         with open("fb_credential.json", mode="w") as f:
@@ -45,7 +43,5 @@ def initialize_db():
         "channel_id": 690909527461199922,
         "is_join": False
     })
-
-    print(ref.get())
 
     return db

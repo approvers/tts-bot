@@ -7,17 +7,18 @@ import asyncio
 import discord
 
 from src.on_message.root import message_root
-import src.databse.root
+from lib.detabase.databse import DataBaseClient
 
 class MainClient(discord.Client):
     def __init__(self):
         super().__init__()
+        self.db = DataBaseClient()
 
     def run(self):
         super().run(os.environ["TOKEN"])
 
     async def on_ready(self):
-        pass
+        self.db.add_system_log(errtype="INFO", content="Bot system started")
 
     async def on_message(self, message):
         if message.author.bot:
@@ -50,8 +51,9 @@ class MainClient(discord.Client):
             return
 
         if before.channel is None:
-            src.databse.root.add_on_voice(member.id, member.display_name, after.channel.id, is_join=True)
+            self.db.add_voice_history(member.id, member.display_name, after.channel.id, is_join=True)
             return
+
         if after.channel is None:
-            src.databse.root.add_on_voice(member.id, member.display_name, before.channel.id, is_join=False)
+            self.db.add_voice_history(member.id, member.display_name, before.channel.id, is_join=False)
             return

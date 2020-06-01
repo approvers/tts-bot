@@ -2,6 +2,7 @@ import json
 
 import discord
 
+
 with open("sndconfig.json", mode="r") as f:
     sounds = json.load(f)
 
